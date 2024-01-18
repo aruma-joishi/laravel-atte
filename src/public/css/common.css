@@ -1,0 +1,28 @@
+*{
+  color:rgba(135, 117, 101, 1);
+}
+
+.header{
+  background-color:white;
+  display:flex;
+  justify-content: space-between;
+}
+
+.header-inner {
+  padding-top: 20px;
+}
+
+.header-nav {
+  display: flex;
+  margin:auto 0;
+  list-style: none;
+}
+
+.header-nav__item {
+  margin-right:20px;
+  text-decoration:none;
+}
+
+.credit{
+  text-align: center;
+}
