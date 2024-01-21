@@ -7,9 +7,9 @@
 @section('content')
 <div class="date-content">
   <div class="date-heading">
-    <bottun class=before>
-      <p>2021-11-01</p>
-      <bottun class=after>
+    <button class=button>
+    <p>2021-11-01</p>
+    <button class=button>
   </div>
 
   <div class="date-item">
@@ -22,16 +22,18 @@
         <th class="date-item__header">勤務時間</th>
       </tr>
 
+      @for ($i=0; $i<5; $i++)
       <tr class="date-item__main">
-        <td class="date-item__content">{{ $users['name']}}</td>
-        <td class="date-item__content">{{ $attends['attend']}}</td>
-        <td class="date-item__content">{{ $attends['leave']}}</td>
-        <td class="date-item__content">{{ $attends['breaktime']}}</td>
-        <td class="date-item__content">{{ $attends['attend']}}</td>
+        <td class="date-item__content">ヤマダ　太郎</td>
+        <td class="date-item__content">10:10:10</td>
+        <td class="date-item__content">22:22:22</td>
+        <td class="date-item__content">33:33:33</td>
+        <td class="date-item__content">44:44:44</td>
       </tr>
+      @endfor
+
     </table>
   </div>
-  {{ $contacts->appends(request()->query())->links() }}
 </div>
 @endsection
 </div>
