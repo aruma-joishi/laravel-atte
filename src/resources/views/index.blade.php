@@ -12,11 +12,10 @@
     @endif
   </div>
 
-  <div class="stamp__item">
-    <form class="stamp__button" action="/attend" method="post">
+  <div class="stamp">
+    <form class="stamp__btn" action="/attend" method="post">
       @csrf
-        <button class="stamp__button-submit" type="submit">勤務開始</button>
-
+        <button class="stamp__button__submit" type="submit">勤務開始</button>
     </form>
     <form class="stamp__button" action="/leave" method="post">
       @csrf

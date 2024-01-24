@@ -31,10 +31,8 @@
         </form>
       </li>
     </ul>
+    @endif
 
-      @endif
-
-    </nav>
   </header>
 
   <main>
