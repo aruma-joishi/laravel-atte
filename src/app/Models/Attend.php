@@ -14,7 +14,7 @@ class Attend extends Model
         'breakbegin',
         'breakend',
         'breaktime',
-        'users_id',
+        'user_id',
     ];
 
     public function User()
