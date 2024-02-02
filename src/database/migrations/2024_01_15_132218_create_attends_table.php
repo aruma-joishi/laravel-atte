@@ -15,12 +15,13 @@ class CreateAttendsTable extends Migration
     {
         Schema::create('attends', function (Blueprint $table) {
             $table->id();
-            $table->timestamps('attend');
-            $table->timestamps('leave');
-            $table->timestamps('breakbegin');
-            $table->timestamps('breakend');
-            $table->time('breaktime');
-            $table->ffff('usersid');
+            $table->dateTime('attend');
+            $table->dateTime('leave');
+            $table->dateTime('worktime');
+            $table->dateTime('breakbegin');
+            $table->dateTime('breakend');
+            $table->dateTime('breaktime');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

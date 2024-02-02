@@ -8,8 +8,8 @@
 <div class="date-content">
   <div class="date-heading">
     <button class=button>
-    <p>2021-11-01</p>
-    <button class=button>
+      <p>2021-11-01</p>
+      <button class=button>
   </div>
 
   <div class="date-item">
@@ -22,15 +22,23 @@
         <th class="date-item__header">勤務時間</th>
       </tr>
 
-      @for ($i=0; $i<5; $i++)
+      @foreach ($users as $user)
+      <td class="date-item__content">{{$user['name']}}</td>
+      @endforeach
+
+      @foreach ($attends as $attend)
       <tr class="date-item__main">
-        <td class="date-item__content">ヤマダ　太郎</td>
-        <td class="date-item__content">10:10:10</td>
-        <td class="date-item__content">22:22:22</td>
-        <td class="date-item__content">33:33:33</td>
-        <td class="date-item__content">44:44:44</td>
+        @foreach ($users as $user)
+        @if ($user['id'] == $attend['user_id'])
+        <td class="date-item__content">{{$user['name']}}</td>
+        @endif
+        @endforeach
+        <td class="date-item__content">{{$attend['attend']}}</td>
+        <td class="date-item__content">{{$attend['leave']}}</td>
+        <td class="date-item__content">{{$attend['breaktime']}}</td>
+        <td class="date-item__content">{{$attend['worktime']}}</td>
       </tr>
-      @endfor
+      @endforeach
 
     </table>
   </div>
