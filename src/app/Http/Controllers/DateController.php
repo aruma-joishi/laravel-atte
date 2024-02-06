@@ -10,7 +10,7 @@ class DateController extends Controller
 {
     public function index()
     {
-        $users = User::with('name');
+        $users = User::all();
         $attends = Attend::all();
         return view('date', compact('users','attends'));
     }

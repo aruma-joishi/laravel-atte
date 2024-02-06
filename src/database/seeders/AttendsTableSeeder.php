@@ -14,6 +14,12 @@ class AttendsTableSeeder extends Seeder
      */
     public function run()
     {
-        Attend::factory()->count(3)->create();
+        $attend_date = new DateTime();
+        for ($i = 0; $i < 5; $i++) {
+            factory(App\Models\Attend::class, 1)
+                ->create([
+                    'attend' => $attend_date->modify('+1day')->format('Y-m-d')
+                ]);
+        }
     }
 }

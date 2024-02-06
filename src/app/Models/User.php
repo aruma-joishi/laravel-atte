@@ -23,8 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function attend()
-    {
+    public function attend(){
         return $this->hasOne(Attend::class);
     }
 

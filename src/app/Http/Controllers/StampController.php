@@ -22,17 +22,13 @@ class StampController extends Controller
     {
         $users = User::with('name');
         $attend = Carbon::now();
-        return $attend;
         return view('index', compact('users'));
-
-        Attend::create($attend);
     }
 
     public function leave()
     {
         $users = User::with('name');
         $leave = Carbon::now();
-        return $leave;
         return view('index', compact('users'));
     }
 
@@ -40,7 +36,6 @@ class StampController extends Controller
     {
         $users = User::with('name');
         $breakbegin = Carbon::now();
-        return $breakbegin;
         return view('index', compact('users'));
     }
 
@@ -48,7 +43,6 @@ class StampController extends Controller
     {
         $users = User::with('name');
         $breakend = Carbon::now();
-        return $breakend;
         return view('index', compact('users'));
     }
 }
