@@ -14,14 +14,11 @@ class AttendFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'attend' => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '-1 day'),
-            'leave' => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '-1 day'),
-            'worktime' => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '-1 day'),
-            'breakbegin' => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '-1 day'),
-            'breakend' => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '-1 day'),
-            'breaktime' => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '-1 day'),
-            'user_id' => $this->faker->numberBetween(1, 10),
-        ];
+        $factory->define(App\Models\Attend::class,function (Faker $faker) {
+            return [
+                'attend' => '',
+                'user_id' => $this->faker->numberBetween(1, 10),
+            ];
+        });
     }
 }

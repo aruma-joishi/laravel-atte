@@ -21,7 +21,7 @@ class CreateAttendsTable extends Migration
             $table->dateTime('breakbegin');
             $table->dateTime('breakend');
             $table->dateTime('breaktime');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -22,10 +22,6 @@
         <th class="date-item__header">勤務時間</th>
       </tr>
 
-      @foreach ($users as $user)
-      <td class="date-item__content">{{$user['name']}}</td>
-      @endforeach
-
       @foreach ($attends as $attend)
       <tr class="date-item__main">
         @foreach ($users as $user)
