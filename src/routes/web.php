@@ -19,10 +19,10 @@ use App\Http\Controllers\DateController;
 Route::middleware('auth')->group(function () {
     Route::get('/', [StampController::class, 'index']);
 });
-Route::post('/attend', [StampController::class, 'attend']);
-Route::post('/leave', [StampController::class, 'leave']);
-Route::post('/breakbegin', [StampController::class, 'breakbegin']);
-Route::post('/breakend', [StampController::class, 'breakend']);
+Route::patch('/attend', [StampController::class, 'attend']);
+Route::patch('/leave', [StampController::class, 'leave']);
+Route::patch('/breakbegin', [StampController::class, 'breakbegin']);
+Route::patch('/breakend', [StampController::class, 'breakend']);
 
 
 Route::middleware('auth')->group(function () {

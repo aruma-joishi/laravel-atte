@@ -18,29 +18,33 @@ class StampController extends Controller
         return view('index',compact('users'));
     }
 
-    public function attend()
+    public function attend(Request $request)
     {
-        $users = User::with('name');
         $attend = Carbon::now();
+        Attend::upadate($attend);
+        $users = User::with('name');
         return view('index', compact('users'));
     }
 
-    public function leave()
+    public function leave(Request $request)
     {
+        $attend = $request->only(['leave']);
         $users = User::with('name');
         $leave = Carbon::now();
         return view('index', compact('users'));
     }
 
-    public function breakbegin()
+    public function breakbegin(Request $request)
     {
+        $attend = $request->only(['breakbegin']);
         $users = User::with('name');
         $breakbegin = Carbon::now();
         return view('index', compact('users'));
     }
 
-    public function breakend()
+    public function breakend(Request $request)
     {
+        $attend = $request->only(['breakend']);
         $users = User::with('name');
         $breakend = Carbon::now();
         return view('index', compact('users'));

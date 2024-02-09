@@ -14,18 +14,24 @@
 
   <div class="stamp">
     <form class="stamp__btn" action="/attend" method="post">
+      @method('PATCH')
       @csrf
-        <button class="stamp__button__submit" type="submit">勤務開始</button>
+      <button class="stamp__button__submit" type="submit">勤務開始</button>
+      <input type="hidden" name="id" value="{{ Auth::user()->id }}">
     </form>
     <form class="stamp__button" action="/leave" method="post">
+      @method('PATCH')
       @csrf
       <button class="stamp__button-submit" type="submit">勤務終了</button>
+      <input type="hidden" name="id" value="{{ Auth::user()->id }}">
     </form>
     <form class="stamp__button" action="/breakbegin" method="post">
+      @method('PATCH')
       @csrf
       <button class="stamp__button-submit" type="submit">休憩開始</button>
     </form>
     <form class="stamp__button" action="/breakend" method="post">
+      @method('PATCH')
       @csrf
       <button class="stamp__button-submit" type="submit">休憩終了</button>
     </form>
