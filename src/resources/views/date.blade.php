@@ -22,17 +22,17 @@
         <th class="date-item__header">勤務時間</th>
       </tr>
 
-      @foreach ($attends as $attend)
+      @foreach ($users as $user)
       <tr class="date-item__main">
-        @foreach ($users as $user)
-        @if ($user['id'] == $attend['user_id'])
         <td class="date-item__content">{{$user['name']}}</td>
-        @endif
-        @endforeach
+        @foreach ($attends as $attend)
+        @if ($attend['user_id'] == $user['id'])
         <td class="date-item__content">{{$attend['attend']}}</td>
         <td class="date-item__content">{{$attend['leave']}}</td>
         <td class="date-item__content">{{$attend['breaktime']}}</td>
         <td class="date-item__content">{{$attend['worktime']}}</td>
+        @endif
+        @endforeach
       </tr>
       @endforeach
 
