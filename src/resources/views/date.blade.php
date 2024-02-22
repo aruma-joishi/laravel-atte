@@ -27,7 +27,7 @@
         <td class="date-item__content">{{$user['name']}}</td>
         @foreach ($attends as $attend)
         @if ($attend['user_id'] == $user['id'])
-        <td class="date-item__content">{{$attend['attend']}}</td>
+        <td class="date-item__content">{{$attend['attend(H-m-s)']}}</td>
         <td class="date-item__content">{{$attend['leave']}}</td>
         <td class="date-item__content">{{$attend['breaktime']}}</td>
         <td class="date-item__content">{{$attend['worktime']}}</td>

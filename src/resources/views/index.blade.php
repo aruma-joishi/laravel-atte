@@ -13,27 +13,24 @@
   </div>
 
   <div class="stamp">
-    <form class="stamp__btn" action="/attend" method="post">
-      @method('PATCH')
+    <form class="stamp__button" action="/attend" method="post">
       @csrf
-      <button class="stamp__button__submit" type="submit">勤務開始</button>
-      <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">勤務開始</button>
     </form>
     <form class="stamp__button" action="/leave" method="post">
       @method('PATCH')
       @csrf
-      <button class="stamp__button-submit" type="submit">勤務終了</button>
-      <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">勤務終了</button>
     </form>
     <form class="stamp__button" action="/breakbegin" method="post">
       @method('PATCH')
       @csrf
-      <button class="stamp__button-submit" type="submit">休憩開始</button>
+      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">休憩開始</button>
     </form>
     <form class="stamp__button" action="/breakend" method="post">
       @method('PATCH')
       @csrf
-      <button class="stamp__button-submit" type="submit">休憩終了</button>
+      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">休憩終了</button>
     </form>
   </div>
 </div>

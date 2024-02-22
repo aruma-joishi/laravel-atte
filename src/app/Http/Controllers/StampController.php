@@ -20,33 +20,55 @@ class StampController extends Controller
 
     public function attend(Request $request)
     {
-        $attend = Carbon::now();
-        Attend::upadate($attend);
-        $users = User::with('name');
-        return view('index', compact('users'));
+        $users = Attend::get('user_id');
+        foreach ($users as $user) {
+            if ($user['user_id'] == $request->get('user_id')){
+                return redirect('/')->with('message', '$attend');
+            }
+        }
+        $carbon = $request->all();
+        $carbon['attend'] = Carbon::now();
+        Attend::create($carbon);
+        return redirect('/')->with('message', '$attend');
     }
 
     public function leave(Request $request)
     {
-        $attend = $request->only(['leave']);
-        $users = User::with('name');
-        $leave = Carbon::now();
-        return view('index', compact('users'));
+        $users = Attend::get('user_id');
+        foreach ($users as $user) {
+            if ($user['user_id'] == $request->get('user_id')) {
+                $carbon = Carbon::now();
+                Attend::where('user_id', $request->user_id)->update(['leave' => $carbon]);
+                return redirect('/')->with('message', '$attend');
+            }
+        }
+        return redirect('/')->with('message', '$attend');
     }
 
     public function breakbegin(Request $request)
     {
-        $attend = $request->only(['breakbegin']);
-        $users = User::with('name');
-        $breakbegin = Carbon::now();
-        return view('index', compact('users'));
+        $attends = Attend::all();
+        foreach ($attends as $attend) {
+            if ($attend['user_id'] == $request->get('user_id')) {
+                if($attend['leave']->exists()){
+                    return 3;
+                }else{
+                    return 3;
+                $carbon = Carbon::now();
+                return 4;
+                Attend::where('user_id', $request->user_id)->update(['leave' => $carbon]);
+                return 5;
+                return redirect('/')->with('message', '$attend');
+                }
+            }
+        }
+        return redirect('/')->with('message', '$attend');
     }
 
     public function breakend(Request $request)
     {
-        $attend = $request->only(['breakend']);
-        $users = User::with('name');
-        $breakend = Carbon::now();
-        return view('index', compact('users'));
+        $carbon = Carbon::now();
+        Attend::where('user_id', $request->user_id)->update(['breakend' => $carbon]);
+        return redirect('/')->with('message', '$attend');
     }
 }
