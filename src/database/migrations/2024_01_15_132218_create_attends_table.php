@@ -15,12 +15,12 @@ class CreateAttendsTable extends Migration
     {
         Schema::create('attends', function (Blueprint $table) {
             $table->id();
-            $table->string('attend')->nullable();
-            $table->string('leave')->nullable();
-            $table->string('worktime')->nullable();
-            $table->string('breakbegin')->nullable();
-            $table->string('breakend')->nullable();
-            $table->string('breaktime')->nullable();
+            $table->datetime('attend')->nullable();
+            $table->datetime('leave')->nullable();
+            $table->datetime('worktime')->nullable();
+            $table->datetime('breakbegin')->nullable();
+            $table->datetime('breakend')->nullable();
+            $table->datetime('breaktime')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
