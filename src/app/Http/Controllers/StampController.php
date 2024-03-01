@@ -20,18 +20,19 @@ class StampController extends Controller
 
     public function attend(Request $request)
     {
-        $users = Attend::get('user_id');
-        foreach ($users as $user) {
-            if ($user['user_id'] == $request->get('user_id')){
+        $attends = Attend::all();
+        foreach($attends as $attend){
+            if($attend['user_id'] == $request->get('user_id') && ($attend[$attend['user_id']])->isSameDay(Carbon::now())){
+                return 1;
                 return redirect('/')->with('message', '$attend');
             }
-        }
+        return 2;
         $carbon = $request->all();
         $carbon['attend'] = Carbon::now();
         Attend::create($carbon);
         return redirect('/')->with('message', '$attend');
+        }
     }
-
     public function leave(Request $request)
     {
         $users = Attend::get('user_id');
@@ -51,7 +52,7 @@ class StampController extends Controller
         foreach ($attends as $attend) {
             if ($attend['user_id'] == $request->get('user_id')) {
                 if($attend['leave']->exists()){
-                    return 3;
+                    return ;
                 }else{
                     return 3;
                 $carbon = Carbon::now();
