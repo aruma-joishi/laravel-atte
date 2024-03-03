@@ -6,11 +6,6 @@
 
 @section('content')
 <div class="date-content">
-  <div class="date-heading">
-    <button class=button>
-      <p>2021-11-01</p>
-      <button class=button>
-  </div>
 
   <div class="date-item">
     <table class="date-item__inner">
