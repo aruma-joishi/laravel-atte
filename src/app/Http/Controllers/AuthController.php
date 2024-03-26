@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -23,6 +24,10 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ]);
+
+            $user = User::get()->latest('id')->first();
+            event(new Registered($user));
+
             return redirect('login')->with('result', '会員登録が完了しました');
         } catch (\Throwable $th) {
             return redirect('register')->with('result', 'エラーが発生しました');

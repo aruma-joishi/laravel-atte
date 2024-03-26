@@ -7,10 +7,6 @@ use App\Http\Controllers\RestController;
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request $request) {
-//   return $request->user();
-// });
-
 Route::get('/email/verify', function () {
   return view('verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -22,7 +18,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/logout', [AuthController::class, 'getLogout']);
-
 
 
 Route::middleware('verified')->group(function () {
