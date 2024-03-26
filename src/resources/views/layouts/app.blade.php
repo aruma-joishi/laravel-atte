@@ -2,46 +2,36 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>test</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-  @yield('css')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Atte</title>
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body>
-  <header class="header">
-    <div class="header-inner">
-      <h2>Atte</h2>
-    </div>
+<body class="container">
+    <header class="header">
+        <h1 class="header-ttl">Atte</h1>
+        @if( Auth::check() )
+        <nav class="header-nav">
+            <ul class="header-nav-list">
+                <li class="header-nav-item"><a href="/">ホーム</a></li>
+                <li class="header-nav-item"><a href="/attend/0">日付一覧</a></li>
+                <li class="header-nav-item"><a href="/userlist">ユーザー一覧</a></li>
+                <li class="header-nav-item"><a href="/logout">ログアウト</a></li>
+            </ul>
+        </nav>
+        @endif
+    </header>
 
-    @if (Auth::check())
-    <ul class="header-nav">
-      <li class="header-nav__item">
-        <a class="header-nav__link" href="/">ホーム</a>
-      </li>
-      <li class="header-nav__item">
-        <a class="header-nav__link" href="/date">日付一覧</a>
-      </li>
-      <li class="header-nav__item">
-        <form action="/logout" method="post">
-          @csrf
-          <button class="header-nav__button">ログアウト</button>
-        </form>
-      </li>
-    </ul>
-    @endif
-
-  </header>
-
-  <main>
-    @yield('content')
-  </main>
-
-  <footer>
-    <div class="credit">Atte,inc.</div>
-  </footer>
+    <main class="main">
+        @yield('main')
+    </main>
+    <footer class="footer">
+        <p class="footer-ttl">estra, inc.</p>
+    </footer>
 </body>
 
 </html>

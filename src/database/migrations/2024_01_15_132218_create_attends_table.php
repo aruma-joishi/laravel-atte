@@ -15,13 +15,10 @@ class CreateAttendsTable extends Migration
     {
         Schema::create('attends', function (Blueprint $table) {
             $table->id();
-            $table->datetime('attend')->nullable();
-            $table->datetime('leave')->nullable();
-            $table->datetime('worktime')->nullable();
-            $table->datetime('breakbegin')->nullable();
-            $table->datetime('breakend')->nullable();
-            $table->datetime('breaktime')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->date('date');
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateAttendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attends');
+        Schema::dropIfExists('attend');
     }
 }

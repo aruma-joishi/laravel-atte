@@ -1,30 +1,50 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StampController;
-use App\Http\Controllers\DateController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AttendController;
+use App\Http\Controllers\RestController;
+
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request $request) {
+//   return $request->user();
+// });
+
+Route::get('/email/verify', function () {
+  return view('verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+
+  return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('/logout', [AuthController::class, 'getLogout']);
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [StampController::class, 'index']);
+Route::middleware('verified')->group(function () {
+
+  Route::get('/', [AttendController::class, 'getIndex']);
+
+  Route::get('/attend/start', [AttendController::class, 'startAttend']);
+  Route::get('/attend/end', [AttendController::class, 'endAttend']);
+
+  Route::get('/rest/start', [RestController::class, 'startRest']);
+  Route::get('/rest/end', [RestController::class, 'endRest']);
+
+  Route::get('/attend/{num}', [AttendController::class, 'getAttend']);
+
+  Route::get('/userlist', [AttendController::class, 'userList']);
+  Route::get('/userlist/{num}', [AttendController::class, 'userAttend']);
 });
-Route::post('/attend', [StampController::class, 'attend']);
-Route::patch('/leave', [StampController::class, 'leave']);
-Route::patch('/breakbegin', [StampController::class, 'breakbegin']);
-Route::patch('/breakend', [StampController::class, 'breakend']);
+
+Route::get('/register', [AuthController::class, 'getRegister']);
+Route::post('/register', [AuthController::class, 'postRegister']);
+
+Route::get('/login', [AuthController::class, 'getLogin'])->name('login');;
+Route::post('/login', [AuthController::class, 'postLogin']);
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/date', [DateController::class, 'index']);
-});

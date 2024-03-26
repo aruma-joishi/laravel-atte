@@ -1,38 +1,42 @@
 @extends('layouts.app')
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
-@endsection
+@section('main')
+@if (session('result'))
+<div class="flash_message">
+  {{ session('result') }}
+</div>
+@endif
+@if( Auth::check() )
+<p class="welcome">{{ Auth::user()->name }}さんお疲れ様です！</p>
+@endif
+<div class="card-container">
+  @if(!isset($is_attend_start))
+  <a href="/attend/start" class="attend-btn">勤務開始</a>
+  @else
+  <p class="attend-btn inactive">勤務開始</p>
+  @endif
 
-@section('content')
-<div class="stamp__content">
-  <div class="stamp__heading">
-    @if (Auth::check())
-    <p>ようこそ、{{ Auth::user()->name }}さん</p>
-    @endif
-  </div>
+  @if(!isset($is_attend_end))
+  <a href="/attend/end" class="attend-btn">勤務終了</a>
+  @else
+  <p class="attend-btn inactive">勤務終了</p>
+  @endif
 
-  <div class="stamp">
-    <form class="stamp__button" action="/attend" method="post">
-      @csrf
-      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">勤務開始</button>
-    </form>
-    <form class="stamp__button" action="/leave" method="post">
-      @method('PATCH')
-      @csrf
-      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">勤務終了</button>
-    </form>
-    <form class="stamp__button" action="/breakbegin" method="post">
-      @method('PATCH')
-      @csrf
-      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">休憩開始</button>
-    </form>
-    <form class="stamp__button" action="/breakend" method="post">
-      @method('PATCH')
-      @csrf
-      <button class="stamp__button__submit" type="submit" name="user_id" value="{{ Auth::user()->id }}">休憩終了</button>
-    </form>
-  </div>
+  @if(isset($is_rest))
+  @if(!$is_rest)
+  <a href="/rest/start" class="attend-btn">休憩開始</a>
+  @else
+  <p class="attend-btn inactive">休憩開始</p>
+  @endif
+  @endif
+
+  @if(isset($is_rest))
+  @if($is_rest)
+  <a href="/rest/end" class="attend-btn">休憩終了</a>
+  @else
+  <p class="attend-btn inactive">休憩終了</p>
+  @endif
+  @endif
 </div>
 
 @endsection
